@@ -1,0 +1,12 @@
+name: Auto Upload Image
+on:
+  push:
+    paths:
+      - './**'
+jobs:
+  generate-cdn-link:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate CDN Link
+        run: |
+          echo "CDN Link: https://cdn.jsdelivr.net/gh/${{ github.repository }}@${{ github.ref_name }}/${{ github.event.head_commit.modified[0] }}" >> $GITHUB_STEP_SUMMARY
